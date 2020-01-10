@@ -5,7 +5,8 @@ function Header(props) {
     return (
         <div className="header">
             <p id="headerLeft"> Pics Clicky Game </p>
-            <p id="headerRight">Score: </p>
+            <p id="headerMiddle">{props.headerText}</p>
+            <p id="headerRight">Score: {props.score} | Top Score: {props.topScore} </p>
         </div>
     );
 }
