@@ -14,6 +14,7 @@ class App extends Component {
     friends
   }
 
+  // Click function to set state of image to true if clicked and reset game it image is already set to true
   handleClick = friendsID => {
     console.log(friendsID);
 
@@ -26,11 +27,13 @@ class App extends Component {
         if(friendArr[i].clicked === false){
 
           this.setState({
+            // update state of image to true
             score: this.state.score +1,
             friends: update(this.state.friends, {[i]: {clicked: {$set: true }}}),
             headerText: "You guessed correctly!"
-          })
 
+          })
+          // Reset game
         } else {
 
           if(this.state.score > this.state.topScore) {
@@ -63,10 +66,10 @@ class App extends Component {
     }
 
   };
-
+// suffle the array each time image is clicked
   shuffleArray = array => {
-    let i = array.length - 1;
-    for(; i > 0; i--) {
+    // let i = array.length - 1;
+    for(let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       const temp = array[i];
       array[i] = array[j];
@@ -77,7 +80,7 @@ class App extends Component {
 
   
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
+  // Map over this.state.friends and render a PicsCard component for each friend object
   render() {
   
 
@@ -91,13 +94,11 @@ class App extends Component {
           />
       )
 
-      let shuffleCards = this.shuffleArray(characterCards)
-
       return (
       <div>
         <Header score={this.state.score} topScore = {this.state.topScore} headerText = {this.state.headerText}/>
           <Wrapper>
-            {shuffleCards}
+            {this.shuffleArray(characterCards)}
           </Wrapper>
         <Footer/>
       </div>
